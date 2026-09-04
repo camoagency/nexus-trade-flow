@@ -77,11 +77,20 @@
     reveals.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  /* --- Hero-Bildsequenz ----------------------------------------------------- */
-  var hero = document.querySelector('.hero__media');
-  if (hero) {
-    var slides = [].slice.call(hero.querySelectorAll('.hero__slide'));
-    var dots = [].slice.call(document.querySelectorAll('.hero__dot'));
+  /* --- Bildsequenz ----------------------------------------------------------
+     Ein Wurzelelement mit [data-carousel]. Darin:
+       .hero__slide   Bilder, das erste steht statisch im HTML
+       .hero__panel   optional, wechselnde Textbloecke
+       .hero-tab      optional, beschriftete Reiter
+       .hero-pause    optional, Pause-Schalter (Pflicht bei automatischem Wechsel)
+     Ohne Reiter laeuft die Folge stumm durch - so auf den Unterseiten. */
+  [].forEach.call(document.querySelectorAll('[data-carousel]'), function (root) {
+    var slides = [].slice.call(root.querySelectorAll('.hero__slide'));
+    if (slides.length < 2) return;
+
+    var panels = [].slice.call(root.querySelectorAll('.hero__panel'));
+    var tabs = [].slice.call(root.querySelectorAll('.hero-tab'));
+    var pauseBtn = root.querySelector('.hero-pause');
     var pending = slides.filter(function (s) { return s.dataset.src; });
 
     var build = function (slide) {
@@ -109,39 +118,70 @@
       delete slide.dataset.src;
     };
 
-    var index = 0, timer = null;
+    var buildAll = function () { pending.forEach(build); pending = []; };
+
+    var index = 0, timer = null, paused = false, held = false;
 
     var show = function (i) {
       index = (i + slides.length) % slides.length;
       slides.forEach(function (s, n) { s.classList.toggle('is-active', n === index); });
-      dots.forEach(function (d, n) {
-        if (n === index) d.setAttribute('aria-current', 'true');
-        else d.removeAttribute('aria-current');
+      panels.forEach(function (p, n) { p.classList.toggle('is-active', n === index); });
+      tabs.forEach(function (t, n) {
+        if (n === index) t.setAttribute('aria-current', 'true');
+        else t.removeAttribute('aria-current');
       });
     };
 
-    var start = function () {
-      if (timer || slides.length < 2) return;
+    var stop = function () { if (timer) { clearInterval(timer); timer = null; } };
+
+    var run = function () {
+      if (timer || reduce || paused || held) return;
       timer = setInterval(function () { if (!document.hidden) show(index + 1); }, 6000);
     };
 
-    dots.forEach(function (d, n) {
-      d.addEventListener('click', function () {
-        pending.forEach(build); pending = [];
+    /* Reiter: springt zum Bild und haelt den automatischen Wechsel kurz an,
+       damit die Auswahl nicht sofort wieder wegwandert. */
+    tabs.forEach(function (t, n) {
+      t.addEventListener('click', function () {
+        buildAll();
         show(n);
-        if (timer) { clearInterval(timer); timer = null; }
-        if (!reduce) start();
+        stop();
+        run();
       });
     });
 
-    /* Bilder 2-4 erst nach window.load, und nur ohne prefers-reduced-motion */
-    if (!reduce) {
-      window.addEventListener('load', function () {
-        pending.forEach(build); pending = [];
-        start();
+    /* Pause-Schalter, WCAG 2.2.2 */
+    if (pauseBtn) {
+      pauseBtn.addEventListener('click', function () {
+        paused = !paused;
+        pauseBtn.setAttribute('aria-pressed', String(paused));
+        var label = pauseBtn.querySelector('.hero-pause__label');
+        var text = paused
+          ? (pauseBtn.dataset.labelPlay || '')
+          : (pauseBtn.dataset.labelPause || '');
+        if (label) label.textContent = text;
+        pauseBtn.setAttribute('aria-label', text);
+        pauseBtn.classList.toggle('is-paused', paused);
+        if (paused) stop(); else { buildAll(); run(); }
       });
     }
-  }
+
+    /* Stopp bei Hover und bei Tastaturfokus */
+    var hold = function () { held = true; stop(); };
+    var release = function () { held = false; run(); };
+    root.addEventListener('mouseenter', hold);
+    root.addEventListener('mouseleave', release);
+    root.addEventListener('focusin', hold);
+    root.addEventListener('focusout', function (ev) {
+      if (!root.contains(ev.relatedTarget)) release();
+    });
+
+    /* Weitere Bilder erst nach window.load. Bei prefers-reduced-motion bleibt
+       Bild 1 stehen; die Reiter laden ihr Bild dann beim Klick nach. */
+    if (!reduce) {
+      window.addEventListener('load', function () { buildAll(); run(); });
+    }
+  });
 
   /* --- Partner ------------------------------------------------------------- */
   var section = document.getElementById('partners');
@@ -149,9 +189,10 @@
     var list = document.getElementById('partners-list');
     var data = (typeof window.PARTNERS !== 'undefined' && window.PARTNERS) || [];
     var lang = document.documentElement.lang || 'en';
-    if (!data.length || !list) {
-      section.hidden = true;
-    } else {
+    /* Die Sektion steht im HTML auf hidden. Sie wird nur eingeblendet, wenn
+       tatsaechlich Eintraege gerendert wurden - so blitzt nie ein leerer Rahmen auf. */
+    if (data.length && list) {
+      var rendered = 0;
       data.forEach(function (p) {
         if (!p || !p.name) return;
         var li = document.createElement('li');
@@ -178,7 +219,9 @@
           li.appendChild(pEl);
         }
         list.appendChild(li);
+        rendered++;
       });
+      if (rendered) section.hidden = false;
     }
   }
 

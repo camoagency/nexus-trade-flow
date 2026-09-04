@@ -11,7 +11,10 @@
   font-weight:600 700;
   font-stretch:100%;
   font-display:swap;
-  src:url('../fonts/archivo-latin-var.woff2') format('woff2');
+  /* woff2-variations zuerst: Safari 16 und aelter braucht diese Schreibweise,
+     um die Gewichtsachse anzuwenden. Neuere Engines nehmen die zweite Quelle. */
+  src:url('../fonts/archivo-latin-var.woff2') format('woff2-variations'),
+      url('../fonts/archivo-latin-var.woff2') format('woff2');
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face{
@@ -20,7 +23,8 @@
   font-weight:400 500;
   font-stretch:100%;
   font-display:swap;
-  src:url('../fonts/inter-latin-var.woff2') format('woff2');
+  src:url('../fonts/inter-latin-var.woff2') format('woff2-variations'),
+      url('../fonts/inter-latin-var.woff2') format('woff2');
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
@@ -132,6 +136,13 @@ small,.small{font-size:.9375rem}
   overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
 }
 
+/* --- Touch-Ziele --------------------------------------------------------
+   Eigenstaendige Links erreichen 44px Hoehe. Links mitten im Fliesstext sind
+   davon ausgenommen, das deckt die Inline-Ausnahme in WCAG 2.5.8 ab. */
+.footer-nav a,.footer-contact a,.footer-bottom nav a,.info a,.crumbs a{
+  display:inline-flex;align-items:center;min-height:44px;
+}
+
 /* --- Fokus -------------------------------------------------------------- */
 :focus{outline:none}
 :focus-visible{outline:2px solid var(--navy);outline-offset:2px;border-radius:2px}
@@ -191,10 +202,19 @@ small,.small{font-size:.9375rem}
 
 /* Enges Budget bei 320px: Logo 41 + Sprachen 132 + Contact-Icon 44
    + Hamburger 44 + 3 Luecken a 4px = 273px bei 280px Inhaltsbreite. */
-.header-bar{display:flex;align-items:center;gap:.25rem;height:100%}
+.header-bar{display:flex;align-items:center;gap:.25rem;height:100%;min-width:0}
+/* Sprachumschalter und Hamburger duerfen nie schrumpfen, das Logo schon.
+   Damit kann die Kopfzeile bei 320px nicht ueberlaufen. */
+.header-bar > .lang,.header-bar > .burger,.header-bar > .header-cta{flex:0 0 auto}
 
-.brand{display:flex;align-items:center;flex:none;margin-right:auto}
-.brand img{height:var(--logo-h);width:auto;transition:height .3s var(--ease)}
+.brand{display:flex;align-items:center;flex:0 1 auto;min-width:0;margin-right:auto}
+/* max-height als Riegel: das Logo kann den Header nie ueberragen, egal welcher
+   --logo-h-Wert greift. Die Breite folgt dem Seitenverhaeltnis. */
+.brand img{
+  height:var(--logo-h);width:auto;
+  max-height:calc(var(--header-h) - 12px);
+  transition:height .3s var(--ease);
+}
 
 .nav{display:none}
 .nav__list{display:flex;align-items:center;gap:clamp(1rem,2vw,2rem)}
@@ -267,11 +287,13 @@ small,.small{font-size:.9375rem}
 .mobile-menu__link[aria-current="page"]{border-bottom-color:var(--red);border-bottom-width:2px}
 
 /* --- Hero (Startseite) --------------------------------------------------- */
+/* min-height, nicht height. Bei niedrigen Fenstern oder langen Uebersetzungen
+   waechst der Hero mit dem Inhalt, statt ihn unten abzuschneiden. Deshalb hier
+   auch kein max-height: das wuerde genau dieses Abschneiden zurueckholen. */
 .hero{
   position:relative;
-  height:min(70vh,560px);
-  height:min(70dvh,560px);
-  max-height:100dvh;
+  min-height:min(70vh,560px);
+  min-height:min(70dvh,560px);
   display:flex;align-items:center;
   background:var(--navy-deep);
   overflow:hidden;
@@ -285,31 +307,64 @@ small,.small{font-size:.9375rem}
   background:linear-gradient(90deg,rgba(0,14,51,.82) 0%,rgba(0,14,51,.55) 55%,rgba(0,14,51,.25) 100%);
 }
 .hero__inner{position:relative;z-index:2;width:100%;color:var(--text-invert);padding-block:2rem}
-.hero h1{color:var(--text-invert);margin-bottom:1rem}
+.hero h1{color:var(--text-invert);margin-bottom:1.5rem;max-width:20ch}
 .hero__text{max-width:52ch;font-size:1.125rem;margin-bottom:2rem;color:rgba(255,255,255,.94)}
-.hero__actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.75rem}
+.hero__actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.75rem;margin-top:1.75rem}
 
-.hero__dots{
-  position:absolute;left:0;right:0;bottom:1.25rem;z-index:3;
-  display:flex;gap:.5rem;
+/* Wechselnde Themenblöcke. Alle im selben Rasterfeld, damit der Container die Höhe
+   des längsten Blocks behält und beim Wechsel nichts springt. */
+.hero__panels{display:grid}
+.hero__panel{
+  grid-area:1/1;
+  opacity:0;visibility:hidden;
+  transition:opacity .25s var(--ease),visibility .25s var(--ease);
 }
-.hero__dot{
-  width:44px;height:44px;padding:0;
-  display:inline-flex;align-items:center;justify-content:flex-start;
+/* Der ausgehende Block verschwindet zuerst, der neue kommt verzoegert nach.
+   Zwei uebereinander liegende Textbloecke sind sonst waehrend der Blende unlesbar. */
+.hero__panel.is-active{opacity:1;visibility:visible;transition-delay:.28s}
+.hero__panel a{
+  display:block;color:inherit;text-decoration:none;max-width:52ch;
+  border-radius:var(--r-sm);
 }
-.hero__dot::before{
-  content:'';display:block;width:32px;height:3px;border-radius:2px;
-  background:rgba(255,255,255,.45);
-  transition:background-color var(--dur) var(--ease),width var(--dur) var(--ease);
+.hero__panel h2{color:var(--text-invert);margin-bottom:.6rem;font-size:clamp(1.4rem,1.1rem + 1.4vw,2.1rem)}
+.hero__panel p{color:rgba(255,255,255,.94);margin-bottom:.9rem}
+.hero__panel a:hover .arrow{text-decoration-color:var(--red)}
+.hero__panel a:hover .arrow::after{transform:translateX(3px)}
+
+/* Reiterleiste unter dem Bild */
+.hero-tabs{background:var(--bg);border-bottom:1px solid var(--border)}
+.hero-tabs__bar{display:flex;align-items:stretch;gap:.5rem}
+.hero-tabs__list{
+  display:flex;align-items:stretch;gap:.25rem;
+  overflow-x:auto;scrollbar-width:thin;
+  scroll-snap-type:x proximity;
 }
-.hero__dot[aria-current="true"]::before{background:var(--red);width:44px}
-.hero__dot:hover::before{background:rgba(255,255,255,.8)}
+.hero-tabs__list::-webkit-scrollbar{height:3px}
+.hero-tabs__list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.hero-tab{
+  display:inline-flex;align-items:center;
+  min-height:52px;padding:.75rem .875rem;white-space:nowrap;scroll-snap-align:start;
+  font-family:var(--ff-head);font-weight:600;font-size:.9375rem;color:var(--text-muted);
+  border-bottom:2px solid transparent;
+  transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease);
+}
+.hero-tab:hover{color:var(--navy)}
+.hero-tab[aria-current="true"]{color:var(--navy);border-bottom-color:var(--red)}
+
+.hero-pause{
+  display:inline-flex;align-items:center;gap:.5rem;flex:none;
+  margin-left:auto;min-height:44px;min-width:44px;padding:.5rem .75rem;
+  align-self:center;border:1px solid var(--border);border-radius:var(--r-sm);
+  font-size:.8125rem;font-weight:500;color:var(--text-muted);
+}
+.hero-pause:hover{color:var(--navy);border-color:var(--navy)}
+.hero-pause svg{width:14px;height:14px;flex:none}
+.hero-pause__label{display:none}
 
 /* Hero der Unterseiten */
 .hero--page{
-  height:min(44vh,380px);
-  height:min(44dvh,380px);
-  max-height:100dvh;
+  min-height:min(44vh,380px);
+  min-height:min(44dvh,380px);
 }
 .hero--page .hero__text{margin-bottom:0}
 
@@ -494,8 +549,9 @@ small,.small{font-size:.9375rem}
   }
   .lang__link{padding:.25rem .5rem}
   .form-row{grid-template-columns:1fr 1fr}
-  .grid--services{grid-template-columns:repeat(2,1fr)}
   .footer-top{grid-template-columns:1fr 1fr}
+  .hero-pause__label{display:inline}
+  .hero-tab{padding:.75rem 1.125rem;font-size:1rem}
 }
 
 /* ==========================================================================
@@ -522,8 +578,7 @@ small,.small{font-size:.9375rem}
    Stufe 4 — ab 1280px: volle Hero-Hoehe, Services vierspaltig
    ========================================================================== */
 @media (min-width:1280px){
-  .hero{height:min(78vh,720px);height:min(78dvh,720px)}
-  .grid--services{grid-template-columns:repeat(4,1fr)}
+  .hero{min-height:min(78vh,720px);min-height:min(78dvh,720px)}
   .hero__text{max-width:46ch}
 }
 
