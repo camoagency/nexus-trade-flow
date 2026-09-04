@@ -491,34 +491,40 @@ small,.small{font-size:.9375rem}
 .contact__head .lead{max-width:56ch;text-wrap:pretty}
 
 /* Linke Spalte: drei Bloecke, Telefon und Mobil unter einem Symbol */
-.contact-info{display:flex;flex-direction:column;gap:1.75rem;padding:0;margin:0;list-style:none}
-.contact-info__item{display:flex;gap:.875rem;align-items:flex-start}
+.contact-info{display:flex;flex-direction:column;gap:1.5rem;padding:0;margin:0;list-style:none}
+/* Symbol und Label teilen sich eine 32px hohe Zeile, die Werte stehen darunter.
+   Dadurch ist die Ausrichtung unabhaengig von der Zahl der Wertzeilen. */
+.contact-info__item{
+  display:grid;grid-template-columns:32px 1fr;
+  column-gap:.75rem;align-items:start;
+}
 .contact-info__icon{
-  flex:0 0 auto;
-  display:inline-flex;align-items:center;justify-content:center;
-  width:40px;height:40px;border-radius:var(--r-sm);
+  width:32px;height:32px;
+  display:grid;place-items:center;
+  border-radius:var(--r-sm);
   background:color-mix(in srgb,var(--navy) 6%,transparent);
   color:var(--navy);
 }
-.contact-info__icon svg{width:20px;height:20px}
+.contact-info__icon svg{width:16px;height:16px}
 .contact-info__label{
   font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--text-muted);margin-bottom:.25rem;
+  color:var(--text-muted);
+  min-height:32px;display:flex;align-items:center;margin:0;
 }
-.contact-info__value{font-size:1rem;color:var(--text);margin:0}
+.contact-info__value{font-size:1rem;color:var(--text);margin:.25rem 0 0}
 .contact-info__value a{color:var(--navy);text-decoration:none}
 .contact-info__value a:hover{text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:2px;text-underline-offset:.2em}
-.contact-info__lines{display:flex;flex-direction:column}
+.contact-info__lines{display:flex;flex-direction:column;gap:.25rem}
 
 /* Rechte Spalte: Formular als Karte */
 .form{
-  display:grid;gap:20px;
+  display:grid;gap:18px;
   background:var(--bg);
   border:1px solid var(--border);border-radius:var(--r-lg);
   box-shadow:var(--shadow-1);
-  padding:clamp(1.5rem,3vw,2.5rem);
+  padding:clamp(1.5rem,3vw,2rem);
 }
-.form-row{display:grid;gap:20px;grid-template-columns:1fr}
+.form-row{display:grid;gap:18px;grid-template-columns:1fr}
 .field{display:flex;flex-direction:column;gap:6px}
 .field label{font-size:.8125rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
 .field input,.field select,.field textarea{
@@ -527,7 +533,7 @@ small,.small{font-size:.9375rem}
   border:1px solid var(--border);border-radius:var(--r-sm);
   transition:border-color var(--dur) var(--ease);
 }
-.field textarea{min-height:150px;padding:.875rem;resize:vertical}
+.field textarea{min-height:140px;padding:.875rem;resize:vertical}
 /* appearance:none plus eigener Pfeil - sonst ist das Systemelement hoeher als
    die Inputs und min-height greift nicht. */
 .field select{
@@ -643,7 +649,17 @@ small,.small{font-size:.9375rem}
   .header-bar{gap:clamp(1.5rem,2.5vw,2.5rem)}
 
   .footer-top{grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr) minmax(0,1.1fr);gap:3rem}
-  .contact__grid{grid-template-columns:minmax(280px,380px) 1fr}
+  /* space-between schiebt das Formular an den rechten Containerrand, damit dort
+     keine tote Flaeche entsteht. Die Karte bleibt bei hoechstens 640px. */
+  .contact__grid{
+    grid-template-columns:minmax(280px,360px) minmax(0,640px);
+    justify-content:space-between;
+    gap:clamp(2rem,5vw,4rem);
+    align-items:start;
+  }
+  /* Zeigergeraet, kein Touch-Ziel noetig. Der Basiswert in der Sammelregel
+     bleibt unangetastet, nur die Hoehe wird hier zurueckgenommen. */
+  .contact-info__value a{min-height:0}
   .hero__inner{padding-block:3rem}
 }
 
