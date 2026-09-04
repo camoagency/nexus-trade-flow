@@ -221,13 +221,17 @@
   <!-- Kontakt -->
   <section class="section section--tint" id="contact" aria-labelledby="contact-title">
     <div class="wrap">
-      <div class="contact__head reveal">
-        <p class="label">Contact</p>
-        <h2 id="contact-title">Get in touch</h2>
-        <p class="lead">Tell us what you want to move or source. We will come back to you with the next step.</p>
-      </div>
-
       <div class="contact__grid">
+       <div class="contact__left">
+        <div class="contact__head reveal">
+          <p class="label">Contact</p>
+          <h2 id="contact-title">Get in touch</h2>
+          <p class="lead">
+            <span>Tell us what you want to move or source.</span>
+            <span>We will come back to you with the next step.</span>
+          </p>
+        </div>
+
         <ul class="contact-info reveal">
           <li class="contact-info__item">
             <span class="contact-info__icon" aria-hidden="true">
@@ -262,6 +266,7 @@
             </div>
           </li>
         </ul>
+       </div>
 
         <form class="form reveal" action="https://formspree.io/f/xvzyqqqb" method="POST"
               data-msg-sending="Sending&hellip;"
@@ -304,7 +309,7 @@
 
           <div class="field">
             <label for="c-message">Message</label>
-            <textarea id="c-message" name="message" rows="4" required
+            <textarea id="c-message" name="message" rows="3" required
                       aria-describedby="c-message-error"
                       data-err-required="Please enter a message."></textarea>
             <p class="field-error" id="c-message-error"></p>
