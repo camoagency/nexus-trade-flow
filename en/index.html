@@ -80,15 +80,16 @@
       </ul>
     </nav>
 
-    <a class="btn btn--primary btn--sm header-cta" href="#contact">
-      <svg class="header-cta__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2z"/><polyline points="22,7 12,14 2,7"/></svg>
-      <span class="header-cta__label">Contact</span>
-    </a>
+    <a class="header-cta" href="#contact">Contact</a>
+
+    <span class="header-div" aria-hidden="true"></span>
 
     <div class="lang">
-      <a class="lang__link" href="/en/" hreflang="en" aria-current="true" lang="en">EN</a>
-      <a class="lang__link" href="/es/" hreflang="es" lang="es"><span class="visually-hidden">Espa&ntilde;ol</span><span aria-hidden="true">ES</span></a>
-      <a class="lang__link" href="/de/" hreflang="de" lang="de"><span class="visually-hidden">Deutsch</span><span aria-hidden="true">DE</span></a>
+      <a class="lang__link" href="/en/" hreflang="en" lang="en" aria-label="English" aria-current="true">EN</a>
+      <span class="lang__sep" aria-hidden="true">&middot;</span>
+      <a class="lang__link" href="/es/" hreflang="es" lang="es" aria-label="Espa&ntilde;ol">ES</a>
+      <span class="lang__sep" aria-hidden="true">&middot;</span>
+      <a class="lang__link" href="/de/" hreflang="de" lang="de" aria-label="Deutsch">DE</a>
     </div>
 
     <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
@@ -99,6 +100,13 @@
 <div class="header-space" aria-hidden="true"></div>
 
 <div class="mobile-menu" id="mobile-menu">
+  <div class="lang lang--menu">
+    <a class="lang__link" href="/en/" hreflang="en" lang="en" aria-label="English" aria-current="true">EN</a>
+    <span class="lang__sep" aria-hidden="true">&middot;</span>
+    <a class="lang__link" href="/es/" hreflang="es" lang="es" aria-label="Espa&ntilde;ol">ES</a>
+    <span class="lang__sep" aria-hidden="true">&middot;</span>
+    <a class="lang__link" href="/de/" hreflang="de" lang="de" aria-label="Deutsch">DE</a>
+  </div>
   <ul class="mobile-menu__list">
     <li><a class="mobile-menu__link" href="/en/trading/">Trading</a></li>
     <li><a class="mobile-menu__link" href="/en/export/">Export</a></li>
