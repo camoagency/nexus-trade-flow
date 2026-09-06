@@ -230,7 +230,7 @@ small,.small{font-size:.9375rem}
 
 /* Trenner zwischen Contact-Button und Sprachumschalter. Erst ab 480px, weil
    der Umschalter darunter im Mobilmenue steht. */
-.header-div{display:none;flex:0 0 auto;width:1px;height:20px;background:var(--border)}
+.header-div{display:none;flex:0 0 auto;width:1px;height:20px;margin-inline:.25rem;background:var(--border)}
 
 /* Sprachumschalter. In der Kopfzeile bewusst klein gesetzt, im Mobilmenue auf
    volles Touch-Ziel. Der rote Strich sitzt am Link selbst und ist damit genau
@@ -651,12 +651,11 @@ small,.small{font-size:.9375rem}
 
   .burger{display:none}
   .mobile-menu{display:none}
-  /* Versuch: zusaetzlich zu .brand bekommt auch .nav ein margin-right:auto.
-     Flexbox verteilt den freien Raum dann gleichmaessig auf beide, die
-     Navigation rueckt etwa mittig zwischen Logo und Contact-Button.
-     Contact-Button und Sprachumschalter bleiben rechts. */
-  .nav{display:block;margin-right:auto}
-  .header-bar{gap:clamp(1.5rem,2.5vw,2.5rem)}
+  /* Enger Grundabstand zieht Contact-Button, Trenner und Sprachumschalter
+     zusammen. Der Abstand vor dem Contact-Button kommt gezielt ueber das
+     margin-right der Navigation zurueck. */
+  .nav{display:block;margin-right:clamp(1.5rem,4vw,3.5rem)}
+  .header-bar{gap:1rem}
 
   .footer-top{grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr) minmax(0,1.1fr);gap:3rem}
   /* Linke Spalte bekommt mit 1fr den Rest der Breite, dadurch entsteht keine
