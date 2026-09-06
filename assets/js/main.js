@@ -183,6 +183,13 @@
     }
   });
 
+  /* --- Jahreszahl -----------------------------------------------------------
+     Nur der Zahlenknoten wird ersetzt, der Rest des Copyright-Strings bleibt.
+     Im HTML steht 2026 als Rueckfallwert, falls JavaScript aus ist. */
+  [].forEach.call(document.querySelectorAll('[data-year]'), function (el) {
+    el.textContent = new Date().getFullYear();
+  });
+
   /* --- Beschaffungsplattformen ---------------------------------------------
      Ohne logo-Feld wird der Name als Wortmarke gesetzt, mit logo-Feld die
      Bilddatei. Beides aus derselben Datenquelle, damit spaeter ohne Umbau
