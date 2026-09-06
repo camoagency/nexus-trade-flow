@@ -477,7 +477,7 @@ small,.small{font-size:.9375rem}
 .section--plat{background:var(--bg);padding-block:clamp(2.5rem,5vw,3.5rem)}
 .plat__head{margin-bottom:clamp(1.5rem,3vw,2rem)}
 .plat__list{
-  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;
   gap:clamp(1.25rem,3vw,2.5rem);
   padding:0;margin:0;list-style:none;
 }
