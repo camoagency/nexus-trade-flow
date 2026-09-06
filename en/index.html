@@ -198,6 +198,19 @@
     </div>
   </section>
 
+  <!-- Beschaffungsplattformen. Keine Partner, keine Referenzen.
+       Bleibt ausgeblendet, solange PARTNERS leer ist. -->
+  <section class="section section--plat" id="partners" aria-labelledby="partners-title" hidden>
+    <div class="wrap">
+      <div class="section__head plat__head reveal">
+        <p class="label">Sourcing platforms</p>
+        <h2 id="partners-title">Where we look for machines</h2>
+        <p class="lead">These are the marketplaces we search when sourcing agricultural machinery in Germany and Europe.</p>
+      </div>
+      <ul class="plat__list" id="partners-list" data-newtab="opens in a new tab"></ul>
+    </div>
+  </section>
+
   <!-- Statement-Band -->
   <section class="statement">
     <div class="wrap">
@@ -207,17 +220,6 @@
 
   <!-- Partner. Startet ausgeblendet und wird von JS nur eingeblendet,
        wenn PARTNERS Eintraege hat. -->
-  <section class="section section--tint" id="partners" aria-labelledby="partners-title" hidden>
-    <div class="wrap">
-      <div class="section__head reveal">
-        <p class="label">Partners</p>
-        <h2 id="partners-title">Companies we work with</h2>
-        <p class="lead">Forwarders, carriers and suppliers on both sides of the route.</p>
-      </div>
-      <ul class="partners__list" id="partners-list"></ul>
-    </div>
-  </section>
-
   <!-- Kontakt -->
   <section class="section section--tint" id="contact" aria-labelledby="contact-title">
     <div class="wrap">

@@ -183,41 +183,36 @@
     }
   });
 
-  /* --- Partner ------------------------------------------------------------- */
+  /* --- Beschaffungsplattformen ---------------------------------------------
+     Ohne logo-Feld wird der Name als Wortmarke gesetzt, mit logo-Feld die
+     Bilddatei. Beides aus derselben Datenquelle, damit spaeter ohne Umbau
+     umgestellt werden kann. */
   var section = document.getElementById('partners');
   if (section) {
     var list = document.getElementById('partners-list');
     var data = (typeof window.PARTNERS !== 'undefined' && window.PARTNERS) || [];
-    var lang = document.documentElement.lang || 'en';
     /* Die Sektion steht im HTML auf hidden. Sie wird nur eingeblendet, wenn
        tatsaechlich Eintraege gerendert wurden - so blitzt nie ein leerer Rahmen auf. */
     if (data.length && list) {
+      var newTab = list.dataset.newtab || '';
       var rendered = 0;
       data.forEach(function (p) {
-        if (!p || !p.name) return;
+        if (!p || !p.name || !p.url) return;
         var li = document.createElement('li');
-        li.className = 'partner';
+        var a = document.createElement('a');
+        a.className = 'plat__item';
+        a.href = p.url;
+        a.target = '_blank';
+        a.rel = 'noopener nofollow';
+        a.setAttribute('aria-label', newTab ? p.name + ' (' + newTab + ')' : p.name);
         if (p.logo) {
           var img = document.createElement('img');
-          img.src = p.logo; img.alt = p.name; img.loading = 'lazy';
-          li.appendChild(img);
-        }
-        var h = document.createElement('h3');
-        if (p.url) {
-          var a = document.createElement('a');
-          a.href = p.url; a.textContent = p.name;
-          a.rel = 'noopener noreferrer'; a.target = '_blank';
-          h.appendChild(a);
+          img.src = p.logo; img.alt = p.name; img.loading = 'lazy'; img.decoding = 'async';
+          a.appendChild(img);
         } else {
-          h.textContent = p.name;
+          a.textContent = p.name;
         }
-        li.appendChild(h);
-        var note = p.note && (p.note[lang] || p.note.en);
-        if (note) {
-          var pEl = document.createElement('p');
-          pEl.textContent = note;
-          li.appendChild(pEl);
-        }
+        li.appendChild(a);
         list.appendChild(li);
         rendered++;
       });

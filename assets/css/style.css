@@ -470,14 +470,34 @@ small,.small{font-size:.9375rem}
 .ext:hover{background:#FFF3F4}
 .ext svg{width:16px;height:16px;flex:none}
 
-/* --- Partner ------------------------------------------------------------- */
-.partners__list{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fit,minmax(200px,1fr));padding:0;margin:0;list-style:none}
-.partner{
-  display:flex;flex-direction:column;align-items:flex-start;gap:.75rem;
-  padding:1.25rem;border:1px solid var(--border);border-radius:var(--r-md);
+/* --- Beschaffungsplattformen --------------------------------------------
+   Handelsplattformen, ueber die beschafft wird. Bewusst zurueckhaltend
+   gesetzt, damit die Leiste keine Partnerschaft behauptet. Weisser Grund,
+   damit sie sich vom navyfarbenen Statement-Band darunter absetzt. */
+.section--plat{background:var(--bg);padding-block:clamp(2.5rem,5vw,3.5rem)}
+.plat__head{margin-bottom:clamp(1.5rem,3vw,2rem)}
+.plat__list{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:clamp(1.25rem,3vw,2.5rem);
+  padding:0;margin:0;list-style:none;
 }
-.partner img{max-height:56px;width:auto}
-.partner p{font-size:.9375rem;color:var(--text-muted);margin:0}
+.plat__item{
+  display:inline-flex;align-items:center;
+  min-height:44px;padding:0 .25rem;
+  font-family:var(--ff-head);font-size:.9375rem;font-weight:600;
+  color:var(--text-muted);text-decoration:none;
+  transition:color 150ms ease-out;
+}
+.plat__item:hover{color:var(--navy)}
+
+/* Greift erst, wenn spaeter Logodateien hinterlegt werden. Siehe die Sperre
+   in assets/js/partners.js. */
+.plat__item img{
+  max-height:26px;width:auto;
+  filter:grayscale(1);opacity:.65;
+  transition:filter 150ms ease-out,opacity 150ms ease-out;
+}
+.plat__item:hover img{filter:grayscale(0);opacity:1}
 
 /* --- Kontaktsektion ------------------------------------------------------ */
 /* align-items:start ist die eigentliche Korrektur: ohne das streckt der Raster
@@ -656,6 +676,7 @@ small,.small{font-size:.9375rem}
      margin-right der Navigation zurueck. */
   .nav{display:block;margin-right:clamp(1.5rem,4vw,3.5rem)}
   .header-bar{gap:1rem}
+  .plat__item img{max-height:32px}
 
   .footer-top{grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr) minmax(0,1.1fr);gap:3rem}
   /* Linke Spalte bekommt mit 1fr den Rest der Breite, dadurch entsteht keine
