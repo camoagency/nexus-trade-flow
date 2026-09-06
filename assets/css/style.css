@@ -426,8 +426,10 @@ small,.small{font-size:.9375rem}
 
 /* --- Statement-Band ------------------------------------------------------ */
 .statement{background:var(--grad-navy);color:var(--text-invert);padding-block:clamp(2.5rem,6vw,4rem)}
+/* 62ch statt voller Containerbreite: bei rund 108 Zeichen Satzlaenge waere die
+   Zeile zu lang zum Lesen, zumal weiss auf Navy. Block mittig im Band. */
 .statement p{
-  max-width:44ch;margin:0;
+  max-width:62ch;margin-inline:auto;
   font-family:var(--ff-head);font-weight:600;
   font-size:clamp(1.25rem,1.1rem + 1vw,1.875rem);
   line-height:1.35;
@@ -677,6 +679,11 @@ small,.small{font-size:.9375rem}
   .nav{display:block;margin-right:clamp(1.5rem,4vw,3.5rem)}
   .header-bar{gap:1rem}
   .plat__item img{max-height:32px}
+  /* Die 68ch von .section__head sind fuer diese H2 zu schmal und erzwingen
+     einen Umbruch. Ab 900px darf sie die Containerbreite nutzen, der Lead
+     bleibt auf Lesebreite begrenzt. */
+  .plat__head{max-width:none}
+  .plat__head .lead{max-width:68ch}
 
   .footer-top{grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr) minmax(0,1.1fr);gap:3rem}
   /* Linke Spalte bekommt mit 1fr den Rest der Breite, dadurch entsteht keine
