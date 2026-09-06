@@ -614,10 +614,24 @@ small,.small{font-size:.9375rem}
    stehen in der Kontaktsektion und im Impressum. */
 .footer-top{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
-  gap:2rem;padding-block:clamp(2.5rem,5vw,3.5rem);
+  gap:2rem;padding-block:clamp(2rem,4vw,2.5rem);
 }
+/* Links Kachel, Claim und Social als eine Gruppe, rechts die Themenlinks. */
 .footer-brand{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
-.footer-logo{max-height:64px;width:auto}
+/* Das Logo ist transparent und verschwindet auf --navy-deep. Die weisse
+   Kachel ist eine Bildunterlage, keine Flaechenfarbe - deshalb #fff und
+   bewusst kein Token. */
+.footer-brand__mark{
+  display:inline-flex;align-items:center;justify-content:center;
+  flex:0 0 auto;width:56px;height:56px;padding:6px;
+  background:#fff;border-radius:var(--r-sm);
+}
+/* display:contents nimmt das picture aus dem Kasten, damit das Bild selbst
+   Flex-Element wird. Sonst bezoege sich max-height:100% auf das picture mit
+   automatischer Hoehe und bliebe wirkungslos - das hochformatige Logo liefe
+   dann aus der 44px hohen Innenflaeche der Kachel heraus. */
+.footer-brand__mark picture{display:contents}
+.footer-brand__mark img{max-width:100%;max-height:100%;width:auto;height:auto;display:block}
 .footer-claim{font-size:.9375rem;font-weight:400;color:rgba(255,255,255,.85);margin:0}
 .footer-nav{display:flex;flex-wrap:wrap;gap:1.5rem;padding:0;margin:0;list-style:none}
 .footer-nav a{font-size:.9375rem;color:rgba(255,255,255,.75)}
