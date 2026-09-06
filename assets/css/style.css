@@ -659,9 +659,15 @@ small,.small{font-size:.9375rem}
 }
 .footer-bottom p{margin:0}
 .footer-copy,.footer-legal{font-size:.8125rem;color:rgba(255,255,255,.6)}
-/* Untergrenze 50 Prozent: Weiss auf --navy-deep ergibt damit rund 4,6:1 und
-   besteht WCAG AA gerade eben. Nicht weiter absenken. */
-.footer-credit{font-size:.8125rem;color:rgba(255,255,255,.5)}
+/* Bewusst die leiseste Zeile im Footer. Die 50 Prozent sind die harte
+   Untergrenze, nicht der Startwert: Weiss auf --navy-deep besteht damit WCAG AA
+   knapp, bei 35 Prozent faellt der Text durch und kostet Lighthouse-Punkte.
+   Deckkraft nicht weiter senken. */
+.footer-credit{font-size:.6875rem;font-weight:400;letter-spacing:.02em;color:rgba(255,255,255,.5)}
+/* Der Name darf nicht kraeftiger stehen als der Vorsatz, sonst zieht er den
+   Blick. Gleiche Farbe, gleiche Strichstaerke wie "Website by". */
+.footer-credit a{color:inherit;font-weight:inherit}
+.footer-credit a:hover{color:rgba(255,255,255,.8);text-decoration-color:currentColor;text-decoration-thickness:1px}
 .footer-legal{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem}
 .footer-legal{order:1}
 .footer-copy{order:2}
