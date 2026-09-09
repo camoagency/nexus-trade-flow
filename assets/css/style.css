@@ -391,8 +391,8 @@ small,.small{font-size:.9375rem}
    das hier min(44vh,380px) vorsieht. Nur die Hoehe wird uebernommen: das
    Standbild, die fehlende Reiterleiste und der fehlende Pause-Button bleiben. */
 .hero--page{
-  min-height:min(70vh,560px);
-  min-height:min(70dvh,560px);
+  min-height:min(60vh,520px);
+  min-height:min(60dvh,520px);
 }
 .hero--page .hero__text{margin-bottom:0}
 
@@ -769,7 +769,7 @@ small,.small{font-size:.9375rem}
    ========================================================================== */
 @media (min-width:1280px){
   .hero{min-height:min(78vh,720px);min-height:min(78dvh,720px)}
-  .hero--page{min-height:min(78vh,720px);min-height:min(78dvh,720px)}
+  .hero--page{min-height:min(60vh,520px);min-height:min(60dvh,520px)}
   .hero__text{max-width:46ch}
 }
 
