@@ -6,22 +6,22 @@
 <!-- shared:head-meta v1 — identisch auf allen Seiten, nicht einzeln aendern.
      Erlaubte Abweichung je Seite: title, description, canonical und die
      og:-Angaben. Sonst nichts. -->
-<title>Trade between Europe and South America | Nexus Trade + Flow</title>
-<meta name="description" content="Nexus Trade + Flow arranges the purchase, sale and shipment of goods and agricultural machinery between the European Union and South America.">
+<title>Trading and transaction structure | Nexus Trade + Flow</title>
+<meta name="description" content="We bring buyers and sellers together, check the counterparties, and set out the delivery terms, payment terms and documents a transaction requires.">
 
-<link rel="canonical" href="https://nexus-tradeflow.com/en/">
+<link rel="canonical" href="https://nexus-tradeflow.com/en/trading/">
 <!-- hreflang nur fuer tatsaechlich vorhandene Seiten. /de/ und /es/ existieren
      noch nicht; Verweise darauf waeren ein harter Fehler in der Search Console.
      Sobald die Sprachordner stehen, hier de und es ergaenzen. -->
-<link rel="alternate" hreflang="en" href="https://nexus-tradeflow.com/en/">
-<link rel="alternate" hreflang="x-default" href="https://nexus-tradeflow.com/en/">
+<link rel="alternate" hreflang="en" href="https://nexus-tradeflow.com/en/trading/">
+<link rel="alternate" hreflang="x-default" href="https://nexus-tradeflow.com/en/trading/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nexus Trade + Flow">
 <meta property="og:locale" content="en_US">
-<meta property="og:title" content="Trade between Europe and South America">
-<meta property="og:description" content="Nexus Trade + Flow arranges the purchase, sale and shipment of goods and agricultural machinery between the European Union and South America.">
-<meta property="og:url" content="https://nexus-tradeflow.com/en/">
+<meta property="og:title" content="Trading and transaction structure">
+<meta property="og:description" content="We bring buyers and sellers together, check the counterparties, and set out the delivery terms, payment terms and documents a transaction requires.">
+<meta property="og:url" content="https://nexus-tradeflow.com/en/trading/">
 <meta property="og:image" content="https://nexus-tradeflow.com/assets/img/og/og-en.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -81,7 +81,7 @@
 
     <nav class="nav" aria-label="Main">
       <ul class="nav__list">
-        <li><a class="nav__link" href="/en/trading/">Trading</a></li>
+        <li><a class="nav__link" href="/en/trading/" aria-current="page">Trading</a></li>
         <li><a class="nav__link" href="/en/export/">Export</a></li>
         <li><a class="nav__link" href="/en/import/">Import</a></li>
         <li><a class="nav__link" href="/en/logistics/">Logistics</a></li>
@@ -129,9 +129,8 @@
 
 <main id="main">
 
-  <!-- Hero: vier Themen im Crossfade, Reiter unter dem Bild -->
-  <section class="topic-hero" data-carousel aria-labelledby="hero-title">
-   <div class="hero">
+  <!-- Seiten-Hero: ein Standbild, keine Bildsequenz, kein Pause-Button -->
+  <section class="hero hero--page" aria-labelledby="page-title">
     <div class="hero__media">
       <div class="hero__slide is-active">
         <picture>
@@ -143,96 +142,158 @@
                width="1920" height="1080" fetchpriority="high" decoding="async">
         </picture>
       </div>
-      <div class="hero__slide" data-src="/assets/img/pages/export-1"
-           data-alt="Two tractors and a baler parked at the edge of a mown field at sunset"></div>
-      <div class="hero__slide" data-src="/assets/img/pages/import-1"
-           data-alt="A row of steel grain silos beside a river port, with a loading crane at the quay"></div>
-      <div class="hero__slide" data-src="/assets/img/pages/logistics-1"
-           data-alt="A white articulated lorry on a country road in low evening light"></div>
       <div class="hero__overlay" aria-hidden="true"></div>
     </div>
 
     <div class="wrap hero__inner">
-      <p class="label">Europe and South America</p>
-      <h1 id="hero-title">Trade and transport between Europe and South America.</h1>
-
-      <div class="hero__panels" aria-live="off">
-        <div class="hero__panel is-active">
-          <a href="/en/trading/">
-            <h2>Bringing buyers and sellers together</h2>
-            <p>We connect counterparties in the trade of goods and machinery and structure the transaction, so both sides know what applies.</p>
-            <span class="arrow">Trading</span>
-          </a>
-        </div>
-        <div class="hero__panel">
-          <a href="/en/export/">
-            <h2>Agricultural machinery to South America</h2>
-            <p>We source machines from German manufacturers and dealers and organise packing, export documents and transport to the destination port.</p>
-            <span class="arrow">Export</span>
-          </a>
-        </div>
-        <div class="hero__panel">
-          <a href="/en/import/">
-            <h2>Raw materials to Germany</h2>
-            <p>We arrange supply from South America, check quality and quantity, and handle shipping and the import documentation that follows.</p>
-            <span class="arrow">Import</span>
-          </a>
-        </div>
-        <div class="hero__panel">
-          <a href="/en/logistics/">
-            <h2>Transport by Nexus Logistic</h2>
-            <p>Sea freight, air freight, road transport and customs clearance are the core business of our sister company.</p>
-            <span class="arrow">Logistics</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="hero__actions">
-        <a class="btn btn--onDark" href="#contact">Get in touch</a>
-      </div>
-    </div>
-   </div>
-
-    <div class="hero-tabs">
-      <div class="wrap hero-tabs__bar">
-        <div class="hero-tabs__list" role="group" aria-label="Choose a topic">
-          <button class="hero-tab" type="button" aria-current="true">Trading</button>
-          <button class="hero-tab" type="button">Export</button>
-          <button class="hero-tab" type="button">Import</button>
-          <button class="hero-tab" type="button">Logistics</button>
-        </div>
-        <button class="hero-pause" type="button" aria-pressed="false" aria-label="Pause the image sequence"
-                data-label-pause="Pause the image sequence" data-label-play="Play the image sequence">
-          <svg viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><rect x="1" y="1" width="3.5" height="12" rx="1"/><rect x="7.5" y="1" width="3.5" height="12" rx="1"/></svg>
-          <span class="hero-pause__label">Pause</span>
-        </button>
-      </div>
+      <p class="label">Trading</p>
+      <h1 id="page-title">Trading and transaction structure</h1>
+      <p class="hero__text">We bring buyers and sellers together and set the terms that make a transaction across borders work.</p>
     </div>
   </section>
 
-  <!-- Beschaffungsplattformen. Keine Partner, keine Referenzen.
-       Bleibt ausgeblendet, solange PARTNERS leer ist. -->
-  <section class="section section--plat" id="partners" aria-labelledby="partners-title" hidden>
+  <!-- Breadcrumb -->
+  <nav class="crumbs" aria-label="Breadcrumb">
     <div class="wrap">
-      <div class="section__head plat__head reveal">
-        <p class="label">Sourcing platforms</p>
-        <h2 id="partners-title">From the European market to your yard</h2>
-        <p class="lead">Machinery purchased on these marketplaces reaches South America through us &mdash; inspection, export papers, shipping.</p>
-      </div>
-      <ul class="plat__list" id="partners-list" data-newtab="opens in a new tab"></ul>
+      <ol>
+        <li><a href="/en/">Home</a></li>
+        <li><span aria-current="page">Trading</span></li>
+      </ol>
     </div>
-  </section>
+  </nav>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nexus-tradeflow.com/en/" },
+      { "@type": "ListItem", "position": 2, "name": "Trading", "item": "https://nexus-tradeflow.com/en/trading/" }
+    ]
+  }
+  </script>
 
-  <!-- Statement-Band -->
-  <section class="statement">
+  <!-- Einleitung -->
+  <section class="section" aria-labelledby="intro-title">
     <div class="wrap">
-      <p>We work in both directions between the European Union and South America, with trade and transport handled from a single source.</p>
+      <div class="section__head reveal">
+        <h2 id="intro-title">What we do in a trade</h2>
+      </div>
+      <div class="prose reveal">
+        <p>Buying and selling across continents involves more than agreeing a price. Both sides need to know who carries the cost and the risk at each stage of the journey.</p>
+        <p>Nexus Trade + Flow brings the two sides together, checks who is on the other side of the table, and sets out the terms in writing. We then coordinate the documents that customs authorities and banks require.</p>
+      </div>
     </div>
   </section>
 
-  <!-- Partner. Startet ausgeblendet und wird von JS nur eingeblendet,
-       wenn PARTNERS Eintraege hat. -->
-  <!-- shared:contact v1 — identisch auf allen Seiten, nicht einzeln aendern.
+  <!-- Leistungsblock -->
+  <section class="section section--tint" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <p class="label">Scope</p>
+        <h2 id="services-title">Where we take part</h2>
+      </div>
+      <ul class="deflist reveal">
+        <li>
+          <b>Matching</b>
+          <span>We bring together buyers and sellers of goods and machinery in international trade.</span>
+        </li>
+        <li>
+          <b>Counterparty and origin checks</b>
+          <span>We look into who we are dealing with and trace where the goods come from.</span>
+        </li>
+        <li>
+          <b>Transaction structure</b>
+          <span>Delivery terms under Incoterms 2020, payment terms, dates and the responsibilities on both sides.</span>
+        </li>
+        <li>
+          <b>Documentation</b>
+          <span>Commercial invoice, packing list, proof of origin, bill of lading or waybill, and insurance certificate.</span>
+        </li>
+        <li>
+          <b>Project development</b>
+          <span>From the first enquiry through offer and contract to delivery and acceptance.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- GO-LIVE-SPERRE: Dieser Abschnitt ist woertlich aus BRIEFING.md 6.1
+       uebernommen und darf nicht umformuliert, gekuerzt oder ergaenzt werden.
+       Er darf nicht oeffentlich zugaenglich sein, bevor eine schriftliche
+       Bestaetigung des Kunden vorliegt. Sperre nicht eigenmaechtig aufloesen. -->
+  <section class="section" aria-labelledby="finance-title">
+    <div class="wrap">
+      <div class="context reveal">
+        <h3 id="finance-title">How transactions are financed</h3>
+        <p>International trade transactions are usually secured through banking instruments rather than direct payment. Nexus Trade + Flow structures the transaction, agrees the payment terms with both sides and coordinates the documents the banks require &mdash; letters of credit, documentary collections or advance payment guarantees, among others. The financing itself is provided by the bank or the specialised trade finance provider involved in the transaction.</p>
+        <p class="legal-note">Nexus Trade + Flow does not grant loans and does not act as a lender.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Querverweise -->
+  <section class="section section--tint" aria-labelledby="more-title">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <h2 id="more-title">The other three areas</h2>
+      </div>
+      <div class="grid grid--auto">
+        <article class="card reveal">
+          <div class="card__media">
+            <picture>
+              <source type="image/avif" sizes="(min-width:900px) 33vw, 92vw" srcset="/assets/img/pages/export-1-640.avif 640w, /assets/img/pages/export-1-1280.avif 1280w">
+              <source type="image/webp" sizes="(min-width:900px) 33vw, 92vw" srcset="/assets/img/pages/export-1-640.webp 640w, /assets/img/pages/export-1-1280.webp 1280w">
+              <img src="/assets/img/pages/export-1-640.jpg" sizes="(min-width:900px) 33vw, 92vw"
+                   srcset="/assets/img/pages/export-1-640.jpg 640w, /assets/img/pages/export-1-1280.jpg 1280w"
+                   alt="Two tractors and a baler parked at the edge of a mown field at sunset"
+                   width="1920" height="1080" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title"><a href="/en/export/">Export</a></h3>
+            <p class="card__text">Agricultural machinery from German manufacturers and dealers to South America.</p>
+            <p class="card__more"><span class="arrow">Read more</span></p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__media">
+            <picture>
+              <source type="image/avif" sizes="(min-width:900px) 33vw, 92vw" srcset="/assets/img/pages/import-1-640.avif 640w, /assets/img/pages/import-1-1280.avif 1280w">
+              <source type="image/webp" sizes="(min-width:900px) 33vw, 92vw" srcset="/assets/img/pages/import-1-640.webp 640w, /assets/img/pages/import-1-1280.webp 1280w">
+              <img src="/assets/img/pages/import-1-640.jpg" sizes="(min-width:900px) 33vw, 92vw"
+                   srcset="/assets/img/pages/import-1-640.jpg 640w, /assets/img/pages/import-1-1280.jpg 1280w"
+                   alt="A row of steel grain silos beside a river port, with a loading crane at the quay"
+                   width="1920" height="1080" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title"><a href="/en/import/">Import</a></h3>
+            <p class="card__text">Raw materials from South America to Germany, with the paperwork that import requires.</p>
+            <p class="card__more"><span class="arrow">Read more</span></p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__media">
+            <picture>
+              <source type="image/avif" sizes="(min-width:900px) 33vw, 92vw" srcset="/assets/img/pages/logistics-1-640.avif 640w, /assets/img/pages/logistics-1-1280.avif 1280w">
+              <source type="image/webp" sizes="(min-width:900px) 33vw, 92vw" srcset="/assets/img/pages/logistics-1-640.webp 640w, /assets/img/pages/logistics-1-1280.webp 1280w">
+              <img src="/assets/img/pages/logistics-1-640.jpg" sizes="(min-width:900px) 33vw, 92vw"
+                   srcset="/assets/img/pages/logistics-1-640.jpg 640w, /assets/img/pages/logistics-1-1280.jpg 1280w"
+                   alt="A white articulated lorry on a country road in low evening light"
+                   width="1920" height="1080" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title"><a href="/en/logistics/">Logistics</a></h3>
+            <p class="card__text">Sea freight, air freight, road transport and customs clearance through Nexus Logistic.</p>
+            <p class="card__more"><span class="arrow">Read more</span></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+<!-- shared:contact v1 — identisch auf allen Seiten, nicht einzeln aendern.
        Erlaubte Abweichung je Seite: im select[name=service] ist die zur Seite
        passende Option per selected vorausgewaehlt. Sonst nichts. -->
   <section class="section section--tint" id="contact" aria-labelledby="contact-title">
@@ -315,7 +376,7 @@
           <div class="field">
             <label for="c-service">Service</label>
             <select id="c-service" name="service">
-              <option value="Trading">Trading</option>
+              <option value="Trading" selected>Trading</option>
               <option value="Export">Export</option>
               <option value="Import">Import</option>
               <option value="Logistics">Logistics</option>
