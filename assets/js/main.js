@@ -136,7 +136,9 @@
 
     var run = function () {
       if (timer || reduce || paused || held) return;
-      timer = setInterval(function () { if (!document.hidden) show(index + 1); }, 6000);
+      /* 5000ms: Untergrenze sind 4500ms. Jede Bildtafel traegt Ueberschrift,
+         Absatz und Link, das Lesen dauert rund vier Sekunden. */
+      timer = setInterval(function () { if (!document.hidden) show(index + 1); }, 5000);
     };
 
     /* Reiter: springt zum Bild und haelt den automatischen Wechsel kurz an,
