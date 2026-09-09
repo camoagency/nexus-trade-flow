@@ -230,7 +230,7 @@ small,.small{font-size:.9375rem}
 
 /* Trenner zwischen Contact-Button und Sprachumschalter. Erst ab 480px, weil
    der Umschalter darunter im Mobilmenue steht. */
-.header-div{display:none;flex:0 0 auto;width:1px;height:20px;margin-inline:.25rem;background:var(--border)}
+.header-div{display:none;flex:0 0 auto;width:1px;height:20px;background:var(--border)}
 
 /* Sprachumschalter. In der Kopfzeile bewusst klein gesetzt, im Mobilmenue auf
    volles Touch-Ziel. Der rote Strich sitzt am Link selbst und ist damit genau
@@ -386,9 +386,13 @@ small,.small{font-size:.9375rem}
 .hero-pause__label{display:none}
 
 /* Hero der Unterseiten */
+/* Gleiche Hoehe wie der Startseiten-Hero, damit beim Wechsel zwischen
+   Startseite und Unterseite kein Sprung entsteht. Abweichung zu Briefing 5.3,
+   das hier min(44vh,380px) vorsieht. Nur die Hoehe wird uebernommen: das
+   Standbild, die fehlende Reiterleiste und der fehlende Pause-Button bleiben. */
 .hero--page{
-  min-height:min(44vh,380px);
-  min-height:min(44dvh,380px);
+  min-height:min(70vh,560px);
+  min-height:min(70dvh,560px);
 }
 .hero--page .hero__text{margin-bottom:0}
 
@@ -620,7 +624,7 @@ small,.small{font-size:.9375rem}
    stehen in der Kontaktsektion und im Impressum. */
 .footer-top{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
-  gap:2rem;padding-block:clamp(2rem,4vw,2.5rem);
+  gap:2rem;padding-block:clamp(1.5rem,3vw,2rem);
 }
 /* Links Kachel, Claim und Social als eine Gruppe, rechts die Themenlinks. */
 .footer-brand{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
@@ -629,7 +633,7 @@ small,.small{font-size:.9375rem}
    bewusst kein Token. */
 .footer-brand__mark{
   display:inline-flex;align-items:center;justify-content:center;
-  flex:0 0 auto;width:56px;height:56px;padding:6px;
+  flex:0 0 auto;width:48px;height:48px;padding:6px;
   background:#fff;border-radius:var(--r-sm);
 }
 /* display:contents nimmt das picture aus dem Kasten, damit das Bild selbst
@@ -655,7 +659,7 @@ small,.small{font-size:.9375rem}
 }
 .soc svg{width:18px;height:18px;flex:none}
 
-.footer-rule{height:1px;background:rgba(255,255,255,.12);margin:2rem 0 1.25rem}
+.footer-rule{height:1px;background:rgba(255,255,255,.12);margin:1.25rem 0 1rem}
 
 /* Untere Zeile. Mobil einspaltig und zentriert in der Reihenfolge
    Legal-Links, Copyright, camo-Zeile. Ab 768px dreiteilig. */
@@ -734,10 +738,10 @@ small,.small{font-size:.9375rem}
 
   .burger{display:none}
   .mobile-menu{display:none}
-  /* Enger Grundabstand zieht Contact-Button, Trenner und Sprachumschalter
-     zusammen. Der Abstand vor dem Contact-Button kommt gezielt ueber das
-     margin-right der Navigation zurueck. */
-  .nav{display:block;margin-right:clamp(1.5rem,4vw,3.5rem)}
+  /* Ein einziger Abstand fuer alle Zwischenraeume der rechten Gruppe:
+     Navigation, Contact-Button, Trenner, Sprachumschalter. Deshalb kein
+     margin-right an .nav und kein margin-inline am Trenner mehr. */
+  .nav{display:block}
   .header-bar{gap:1rem}
   .plat__item img{max-height:32px}
   /* Die 68ch von .section__head sind fuer diese H2 zu schmal und erzwingen
@@ -746,7 +750,7 @@ small,.small{font-size:.9375rem}
   .plat__head{max-width:none}
   .plat__head .lead{max-width:68ch}
 
-  .soc{width:40px;height:40px}
+  .soc{width:36px;height:36px}
   /* Linke Spalte bekommt mit 1fr den Rest der Breite, dadurch entsteht keine
      tote Flaeche in der Mitte. Die Karte bleibt bei hoechstens 560px. */
   .contact__grid{
@@ -765,6 +769,7 @@ small,.small{font-size:.9375rem}
    ========================================================================== */
 @media (min-width:1280px){
   .hero{min-height:min(78vh,720px);min-height:min(78dvh,720px)}
+  .hero--page{min-height:min(78vh,720px);min-height:min(78dvh,720px)}
   .hero__text{max-width:46ch}
 }
 
