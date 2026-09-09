@@ -15,6 +15,8 @@ Der Nutzer ist kein Entwickler und arbeitet mit begrenztem Token-Kontingent.
 - Nicht mehrfach dieselbe Datei lesen. Einmal lesen, im Kopf behalten.
 - Keine Zwischenberichte waehrend eines Schritts. Erst am Ende des Schritts melden.
 - Bei Unklarheit: eine kurze Frage stellen, nicht drei Varianten ausarbeiten.
+- Nach jedem abgeschlossenen Block: stoppen und auf Freigabe warten.
+- Vor dem ersten Schreibzugriff in einem neuen Block: geplante Aenderung in einem Satz nennen.
 
 ## Antwortformat
 Beispiel fuer eine gute Statusmeldung:
