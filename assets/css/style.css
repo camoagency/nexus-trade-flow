@@ -402,6 +402,12 @@ small,.small{font-size:.9375rem}
 .todo{background:#FFF3B0;color:#000;padding:.1em .35em;border-radius:2px;font-weight:600}
 .prose--wide{max-width:72ch}
 
+/* Erste Sektion einer Unterseite: weniger Luft nach oben, damit der
+   Textanfang bei 800px Fensterhoehe ueber der Falz bleibt. Zwei Selektoren,
+   weil zwischen Breadcrumb und Sektion das BreadcrumbList-JSON-LD steht. */
+.crumbs + script + .section,
+.crumbs + .section{padding-top:clamp(1.5rem,3vw,2.25rem)}
+
 /* --- Breadcrumb ---------------------------------------------------------- */
 .crumbs{padding-block:1rem;border-bottom:1px solid var(--border);font-size:.9375rem}
 .crumbs ol{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;list-style:none;padding:0;margin:0}
