@@ -246,11 +246,6 @@ small,.small{font-size:.9375rem}
 .lang__link:hover{color:var(--navy)}
 .lang__link[aria-current="true"]{color:var(--navy);border-bottom-color:var(--red)}
 .lang__sep{color:var(--border);font-size:.6875rem;line-height:1}
-/* Solange /de/ und /es/ fehlen, stehen die beiden Sprachen ohne href da.
-   Ein Link, der zuverlaessig auf 404 fuehrt, waere ein Fehler, kein Platzhalter.
-   Diese Regel entfaellt, sobald die Sprachordner existieren. */
-.lang__link[aria-disabled="true"]{opacity:.45;cursor:default}
-.lang__link[aria-disabled="true"]:hover{color:var(--text-muted)}
 
 /* Im Mobilmenue: steht ganz oben, jedes Ziel 44x44 nach Briefing 11 */
 .lang--menu{display:flex;gap:.75rem;margin-bottom:1.75rem}
